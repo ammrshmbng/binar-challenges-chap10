@@ -1,5 +1,6 @@
-CREATE DATABASE teamone_chap9;
-
+ buat data baseCREATE DATABASE teamone_chap9;
+ 
+========copy this =========
 CREATE SEQUENCE IF NOT EXISTS public.users_id_seq
 START WITH 1
 INCREMENT BY 1
@@ -86,7 +87,7 @@ CREATE TABLE IF NOT EXISTS public.game1s
         ON DELETE NO ACTION
 );
 
-==================================================================
+======================== end copy ==========================================
 
 
  ALTER TABLE users MODIFY "createdAt"  datatype timestamp NOT NULL  ;
