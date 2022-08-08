@@ -1,0 +1,106 @@
+CREATE DATABASE teamone_chap9;
+
+CREATE SEQUENCE IF NOT EXISTS public.users_id_seq
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1 ;
+
+CREATE SEQUENCE IF NOT EXISTS public.user_bios_id_seq
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1 ;
+
+CREATE SEQUENCE IF NOT EXISTS public.leaderboards_id_seq
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1 ;
+
+CREATE SEQUENCE IF NOT EXISTS public.game1s_id_seq
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1 ;
+
+CREATE TABLE IF NOT EXISTS public.users
+(
+    id integer NOT NULL DEFAULT nextval('users_id_seq'::regclass),
+    name character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    username character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    email character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    password character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    social character varying(255) COLLATE pg_catalog."default",
+    point integer,
+    "createdAt" timestamp with time zone DEFAULT (NOW()) ,
+    "updatedAt" timestamp with time zone DEFAULT (current_timestamp AT TIME ZONE 'UTC'),
+    CONSTRAINT users_pkey PRIMARY KEY (id),
+    CONSTRAINT users_username_key UNIQUE (username)
+);
+
+CREATE TABLE IF NOT EXISTS public.user_bios
+(
+    id integer NOT NULL DEFAULT nextval('user_bios_id_seq'::regclass),
+    id_foreign integer NOT NULL,
+    phone character varying(255) COLLATE pg_catalog."default" ,
+    "createdAt" timestamp with time zone DEFAULT (NOW()),
+    "updatedAt" timestamp with time zone DEFAULT (NOW()),
+    CONSTRAINT user_bios_pkey PRIMARY KEY (id),
+    CONSTRAINT user_bios_phone_key UNIQUE (phone),
+    CONSTRAINT user_bios_id_foreign_fkey FOREIGN KEY (id_foreign)
+        REFERENCES public.users (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+);
+
+CREATE TABLE IF NOT EXISTS public.leaderboards
+(
+    id integer NOT NULL DEFAULT nextval('leaderboards_id_seq'::regclass),
+    id_foreign integer,
+    point_total integer,
+    "createdAt" timestamp with time zone DEFAULT (NOW()),
+    "updatedAt" timestamp with time zone DEFAULT (NOW()),
+    CONSTRAINT leaderboards_pkey PRIMARY KEY (id),
+    CONSTRAINT leaderboards_id_foreign_fkey FOREIGN KEY (id_foreign)
+        REFERENCES public.users (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+);
+
+CREATE TABLE IF NOT EXISTS public.game1s
+(
+    id integer NOT NULL DEFAULT nextval('game1s_id_seq'::regclass),
+    id_foreign integer,
+    score integer,
+    "createdAt" timestamp with time zone  DEFAULT (NOW()) ,
+    "updatedAt" timestamp with time zone  DEFAULT (NOW()),
+    CONSTRAINT game1s_pkey PRIMARY KEY (id),
+    CONSTRAINT game1s_id_foreign_fkey FOREIGN KEY (id_foreign)
+        REFERENCES public.users (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+);
+
+==================================================================
+
+
+ ALTER TABLE users MODIFY "createdAt"  datatype timestamp NOT NULL  ;
+ ALTER TABLE users MODIFY "updatedAt"  datatype timestamp NULL ;
+
+ ALTER TABLE user_bios ALTER COLUMN "createdAt"  TYPE timestamp  ;
+ ALTER TABLE user_bios ALTER COLUMN "updatedAt"  TYPE timestamp  ;
+
+ ALTER TABLE leaderboards ALTER COLUMN "createdAt"  TYPE timestamp  ;
+ ALTER TABLE leaderboards ALTER COLUMN "updatedAt"  TYPE timestamp  ;
+
+ ALTER TABLE game1s ALTER COLUMN "createdAt"  TYPE timestamp  ;
+ ALTER TABLE game1s ALTER COLUMN "updatedAt"  TYPE timestamp  ;
+
+
+
+ 
