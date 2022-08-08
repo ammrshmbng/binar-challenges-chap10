@@ -1,0 +1,100 @@
+{
+    "info": {
+    "_postman_id": "a399bb13-724d-4cb7-a9e5-0fad29163ec7",
+    "name": "backend-chap-10",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+    },
+    "item": [
+    {
+    "name": "localhost:4002/api/users",
+    "id": "c183cc8a-7320-4f97-ac05-e21ed85267cd",
+    "request": {
+    "method": "GET",
+    "header": [],
+    "url": "localhost:4002/api/users"
+    },
+    "response": []
+    },
+    {
+    "name": "localhost:4002/api/login",
+    "id": "dc072296-c0b3-4219-8cea-d960dad2dac5",
+    "request": {
+    "method": "POST",
+    "header": [],
+    "body": {
+    "mode": "urlencoded",
+    "urlencoded": [
+    {
+    "key": "username",
+    "value": "zoro",
+    "type": "text"
+    },
+    {
+    "key": "password",
+    "value": "1234",
+    "type": "text"
+    }
+    ]
+    },
+    "url": "localhost:4002/api/login"
+    },
+    "response": []
+    },
+    {
+    "name": "localhost:4002/api/register",
+    "id": "1dc0bdc7-beb4-496b-a49a-8be6b2380f93",
+    "request": {
+    "method": "POST",
+    "header": [
+    {
+    "key": "name",
+    "value": "monkey d luffy",
+    "type": "text"
+    },
+    {
+    "key": "email",
+    "value": "luffy@gmail.com",
+    "type": "text"
+    },
+    {
+    "key": "username",
+    "value": "mugiwara",
+    "type": "text"
+    },
+    {
+    "key": "password",
+    "value": "1234",
+    "type": "text"
+    }
+    ],
+    "body": {
+    "mode": "urlencoded",
+    "urlencoded": [
+    {
+    "key": "name",
+    "value": "monkey d luffy",
+    "type": "text"
+    },
+    {
+    "key": "email",
+    "value": "luffy@gmail.com",
+    "type": "text"
+    },
+    {
+    "key": "username",
+    "value": "luffy",
+    "type": "text"
+    },
+    {
+    "key": "password",
+    "value": "1234",
+    "type": "text"
+    }
+    ]
+    },
+    "url": "localhost:4002/api/register"
+    },
+    "response": []
+    }
+    ]
+    }
