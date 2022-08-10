@@ -21,7 +21,13 @@ const getProfile = async (req, res) => {
     const profile = await db.query('SELECT * FROM users where id =$1 ',[id] );
     res.status(200).json({
         message: "profile-page",
-        data: profile.rows,
+        data: {
+            id: profile.rows[0].id,
+            username: profile.rows[0].username,
+            email: profile.rows[0].email,
+            social: profile.rows[0].social,
+            point: profile.rows[0].point,
+        },
     })
 }
 
