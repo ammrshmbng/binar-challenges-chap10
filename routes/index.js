@@ -18,6 +18,7 @@ const loginPost = require('../controllers/login');
 const register = require('../controllers/register');
 const getAllplayer = require('../controllers/userController').getAllplayer;
 const getProfile = require('../controllers/userController').getProfile;
+const postUpdateProfile = require('../controllers/userController').postUpdateProfile;
 const uploadPicture = require('../controllers/upload');
 
 
@@ -30,6 +31,8 @@ router.post('/api/register',register);
 router.get('/api/users',getAllplayer);
 
 router.get('/api/users/:id', getProfile);
+
+router.post('/api/update/:id', postUpdateProfile);
 
 router.post('/api/upload', upload.single('photo'), uploadPicture);
 

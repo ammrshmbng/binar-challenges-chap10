@@ -32,20 +32,16 @@ const getProfile = async (req, res) => {
     })
 }
 
-//GET ONE PLAYER TO UPDATE
-// const getUpdateprofile = async (req, res) => {
-//     const getUser = await user.findOne({
-//         where: {
-//             id: req.params.id
-//         },
-//         include: {
-//             model: user_bio
-//         }
-//     });
-//     res.status(200).json({
-//         getUser,
-//     })
-// };
+// GET ONE PLAYER TO UPDATE
+const postUpdateProfile = async (req, res) => {
+    const {id} = req.params
+    const { name, username, email } = req.body;
+
+    const updateProfile = await db.query('UPDATE users SET name = $2, username = $3, email = $4 WHERE id =$1 ',[id, name, username, email] );
+    res.status(200).json({
+        message: "profile updated!"
+    })
+};
 
 // const postUpdateUser = async (req, res) => {
 //     const { username, password, email } = req.body;
@@ -77,6 +73,6 @@ const getProfile = async (req, res) => {
 module.exports = {
     getAllplayer,
     getProfile,
+    postUpdateProfile,
     // getUpdateprofile,
-    // postUpdateUser
 }
