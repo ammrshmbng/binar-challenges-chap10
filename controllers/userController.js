@@ -23,6 +23,7 @@ const getProfile = async (req, res) => {
         message: "profile-page",
         data: {
             id: profile.rows[0].id,
+            name: profile.rows[0].name,
             username: profile.rows[0].username,
             email: profile.rows[0].email,
             social: profile.rows[0].social,
