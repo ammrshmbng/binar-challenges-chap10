@@ -25,5 +25,8 @@
     "sequelize": "^6.21.3",
     "sequelize-cli": "^6.4.1",
     "sweetalert2": "^11.4.24"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
   }
 }
