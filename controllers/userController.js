@@ -35,9 +35,9 @@ const getProfile = async (req, res) => {
 // GET ONE PLAYER TO UPDATE
 const postUpdateProfile = async (req, res) => {
     const {id} = req.params
-    const { name, username, email } = req.body;
+    const { name, username, email, social } = req.body;
 
-    const updateProfile = await db.query('UPDATE users SET name = $2, username = $3, email = $4 WHERE id =$1 ',[id, name, username, email] );
+    const updateProfile = await db.query('UPDATE users SET name = $2, username = $3, email = $4, social = $5 WHERE id =$1 ',[id, name, username, email, social] );
     res.status(200).json({
         message: "profile updated!"
     })
