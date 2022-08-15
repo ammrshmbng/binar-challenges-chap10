@@ -28,6 +28,7 @@ const getProfile = async (req, res) => {
             email: profile.rows[0].email,
             social: profile.rows[0].social,
             point: profile.rows[0].point,
+            about_me: profile.rows[0].about_me,
         },
     })
 }
@@ -35,9 +36,9 @@ const getProfile = async (req, res) => {
 // GET ONE PLAYER TO UPDATE
 const postUpdateProfile = async (req, res) => {
     const {id} = req.params
-    const { name, username, email, social } = req.body;
+    const { name, username, email, social, about_me } = req.body;
 
-    const updateProfile = await db.query('UPDATE users SET name = $2, username = $3, email = $4, social = $5 WHERE id =$1 ',[id, name, username, email, social] );
+    const updateProfile = await db.query('UPDATE users SET name = $2, username = $3, email = $4, social = $5, about_me = $6 WHERE id =$1 ',[id, name, username, email, social, about_me] );
     res.status(200).json({
         message: "profile updated!"
     })
