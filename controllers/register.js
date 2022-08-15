@@ -26,7 +26,7 @@ const register = async (req, res) => {
         } else {
             console.log('berhasil');           
 
-           db.query('INSERT INTO users(name,username,email,password) VALUES ($1,$2,$3,$4)', 
+           db.query('INSERT INTO users(name,username,email,password,point) VALUES ($1,$2,$3,$4,0)', 
            [name,username,email,encryptedPassword ]);
 
             return res.status(200).json({

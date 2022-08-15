@@ -5,7 +5,6 @@ const bcrypt = require("bcrypt");
 
 // import jwt
 const jwt = require('jsonwebtoken');
-
 //import jwt config
 const jwtConfig = require('../config/jwt');
 
@@ -34,7 +33,7 @@ const loginPost = async (req, res) => {
             return res.json({ message: "wrong password", }).status(400)
         }
         const tokenPayload = {
-            id: userData.id,
+            id: userData.rows[0].id,
             username: userData.rows[0].username,
             email: userData.rows[0].email
         }
@@ -42,7 +41,6 @@ const loginPost = async (req, res) => {
 
         return res.status(200).json({
             message: "login success",
-            userData: userData.rows,
             token,
         }) // apabila pass sesuai maka login berhasil dan berikan message sukses
 
