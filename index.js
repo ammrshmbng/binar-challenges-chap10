@@ -14,7 +14,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 // atur port
-const port = process.env.APP_PORT || '4002';
+const port = process.env.PORT || '4002';
 
 // import routing
 const router = require("./routes");
