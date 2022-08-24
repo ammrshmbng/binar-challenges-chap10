@@ -1,5 +1,5 @@
 // import client dari pg
-const {Pool} = require('pg');
+const { Pool } = require('pg');
 
 // gunakan variable dari env atau gunakan nilai default
 const dbHost = process.env.POSTGRES_HOST || 'localhost';
@@ -15,16 +15,12 @@ const pool = new Pool({
   database: dbDatabase,
   password: dbPassword,
   port: dbPort,
-  ssl: { rejectUnauthorized: false }
+  ssl: { rejectUnauthorized: false },
 });
 
-
-
 // fungsi ini akan dipanggil oleh fungsi yg membutuhkan koneksi ke database
-const getConnection = () => {
-  return pool;
-} 
+const getConnection = () => pool;
 
 module.exports = {
   getConnection,
-}
+};
