@@ -9,7 +9,6 @@ const jwtConfig = require('../config/jwt');
 const db = require('../db').getConnection();
 
 // controller untuk login method POST untuk user (cek email dan pass)
-// NOTE: Belum ada generator dan simpan TOKEN
 const loginPost = async (req, res) => {
   const { username } = req.body;
   const { password } = req.body;
@@ -20,10 +19,12 @@ const loginPost = async (req, res) => {
     console.log(userData.rows);
 
     // diawali dengan pengecekan username,
-    // apabila email tidak ditemukan maka pg module akan mengirimkan error message
-    // sehingga pemberian response 'wrong username' dilakukan pada bagian catch
+    // apabila email tidak ditemukan maka pg module akan mengirimkan array kosong
+    if (userData.rows.length === 0) {
+      return res.json({ message: 'wrong username' }).status(400);
+    }
 
-    // apabila username ditemukan maka password pada akun tsb dienkripsi
+    // apabila username ditemukan maka password pada akun tsb dienkripsi,
     // agar bisa dicocokan dengan yang ada di database
     const encrypredPassword = await bcrypt.compare(password, userData.rows[0].password);
 
@@ -37,17 +38,14 @@ const loginPost = async (req, res) => {
     };
     const token = jwt.sign(tokenPayload, jwtConfig.JWT_SECRET);
 
+    // apabila pass sesuai maka login berhasil dan berikan message sukses
     return res.status(200).json({
       message: 'login success',
       token,
-    }); // apabila pass sesuai maka login berhasil dan berikan message sukses
+    });
   } catch (error) {
     console.log('terjadi error');
-
-    // error yg dikirimkan oleh pg module apabila username tdk ditemukan adalah berupa array kosong
-    if (error === []) {
-      return res.json({ message: 'wrong username' }).status(400);
-    }
+    console.log(error);
 
     // response berikut diperuntukkan untuk berjaga2 apabila ada error lainnya
     return res.json({ message: error });
