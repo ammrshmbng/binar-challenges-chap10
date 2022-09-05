@@ -3,8 +3,12 @@ require('dotenv').config();
 
 // import express
 const express = require('express');
+
 // import cors
 const cors = require('cors');
+
+// import multer
+const multer = require('multer');
 
 // setting express
 const app = express();
@@ -22,6 +26,7 @@ const router = require('./routes');
 // middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(multer().any());
 
 // implement cors
 app.use(cors());

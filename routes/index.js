@@ -1,16 +1,16 @@
 const router = require('express').Router();
-const multer = require('multer');
+// const multer = require('multer');
 
 // PENGATURAN STORAGE UNTUK MULTER
-const myStorage = multer.diskStorage({
-  destination: './public/uploads',
-  filename: (req, file, callback) => {
-    callback(null, file.originalname); // upload dengan nama asli
-  },
-});
+// const myStorage = multer.diskStorage({
+//   destination: './public/uploads',
+//   filename: (req, file, callback) => {
+//     callback(null, file.originalname); // upload dengan nama asli
+//   },
+// });
 
 // middleware untuk upload dengan multer
-const upload = multer({ storage: myStorage });
+// const upload = multer({ storage: myStorage });
 
 // import controllers
 const getUsers = require('../controllers/getUsers');
@@ -33,6 +33,6 @@ router.get('/api/users/:id', getProfile);
 
 router.post('/api/update/:id', postUpdateProfile);
 
-router.post('/api/upload', upload.single('photo'), uploadPicture);
+router.post('/api/upload', uploadPicture);
 
 module.exports = router;
