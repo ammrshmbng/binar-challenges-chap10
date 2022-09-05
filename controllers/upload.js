@@ -1,9 +1,12 @@
 // import cloudinary uploader
 const cloud = require('../lib/cloudinary');
+// import db
+const db = require('../db').getConnection();
 
 const uploadPicture = async (req, res) => {
   // baca dari files, jika tidak ada, beri nilai []
   const file = req.files || [];
+  const { id } = req.params;
 
   // upload foto
   let fileURL = '';
@@ -16,6 +19,8 @@ const uploadPicture = async (req, res) => {
       });
     }
   }
+
+  db.query('UPDATE users SET image_url = $1 WHERE id =$2 ', [fileURL, id]);
 
   // berikan response sukses
   return res.status(201).json({

@@ -33,6 +33,6 @@ router.get('/api/users/:id', getProfile);
 
 router.post('/api/update/:id', postUpdateProfile);
 
-router.post('/api/upload', uploadPicture);
+router.post('/api/upload/:id', uploadPicture);
 
 module.exports = router;
