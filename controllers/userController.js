@@ -30,6 +30,7 @@ const getProfile = async (req, res) => {
       social: profile.rows[0].social,
       point: profile.rows[0].point,
       about_me: profile.rows[0].about_me,
+      image_url: profile.rows[0].image_url,
     },
   });
 };
