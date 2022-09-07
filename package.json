@@ -30,6 +30,7 @@
     "npmlog": "^6.0.2",
     "pg": "^8.7.3",
     "pg-query-stream": "^4.2.3",
+    "pgmock2": "^2.1.5",
     "rimraf": "^3.0.2",
     "semver": "^7.3.7",
     "sequelize": "^6.21.3",
